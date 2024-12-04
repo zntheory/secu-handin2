@@ -7,6 +7,10 @@ WIP.
 ## Structure overview
 ```txt
 secu-handin2/
+├── certs/                # Assume patient has access here
+│   ├── hospital.cert     # The hospital's certificate (pre-generated using openssl)
+│   └── pk/               # Assume patient does not have access here
+│       └── hospital.key  # The hospital's private key (pre-generated using openssl)
 ├── cmd/
 │   ├── hospital/         # Hospital server application
 │   └── patient/          # Patient client application
@@ -17,7 +21,6 @@ secu-handin2/
 │   ├──config/
 │   │   └── config.go      # Application configuration (e.g., ports, participant settings)
 │   ├──network/
-│   │   ├── certauth.go    # Certification Authority logic
 │   │   ├── client.go      # Network client implementation for patients
 │   │   ├── server.go      # Network server implementation for the hospital
 │   │   └── tls.go         # TLS setup and key exchange
