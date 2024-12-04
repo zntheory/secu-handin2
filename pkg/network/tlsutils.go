@@ -52,6 +52,7 @@ func ConfigureClientTLS(certFile string) (*tls.Config, error) {
 	return tlsConfig, nil
 }
 
+// CreateListener uses tls.Listen and a tls.Config to create a net.Listener
 func CreateListener(tlsConfig *tls.Config) (net.Listener, error) {
 	listener, err := tls.Listen("tcp", config.Port, tlsConfig)
 	if err != nil {
