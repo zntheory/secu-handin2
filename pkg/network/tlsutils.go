@@ -3,6 +3,8 @@ package network
 import (
 	"crypto/tls"
 	"fmt"
+	"github.com/zntheory/secu-handin2/pkg/config"
+	"net"
 )
 
 // LoadCertificate for the client
@@ -48,4 +50,12 @@ func ConfigureClientTLS(certFile string) (*tls.Config, error) {
 		InsecureSkipVerify: false,
 	}
 	return tlsConfig, nil
+}
+
+func CreateListener(tlsConfig *tls.Config) (net.Listener, error) {
+	listener, err := tls.Listen("tcp", config.Port, tlsConfig)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create listener: %v", err)
+	}
+	return listener, nil
 }
