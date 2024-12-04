@@ -54,9 +54,18 @@ func ConfigureClientTLS(certFile string) (*tls.Config, error) {
 
 // CreateListener uses tls.Listen and a tls.Config to create a net.Listener
 func CreateListener(tlsConfig *tls.Config) (net.Listener, error) {
-	listener, err := tls.Listen("tcp", config.Port, tlsConfig)
+	listener, err := tls.Listen("https", config.Port, tlsConfig)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create listener: %v", err)
 	}
 	return listener, nil
+}
+
+// CreateConnection uses tls.Dial and a tls.Config to create a net.Conn
+func CreateConnection(tlsConfig *tls.Config) (net.Conn, error) {
+	conn, err := tls.Dial("https", config.Port, tlsConfig)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create connection: %v", err)
+	}
+	return conn, nil
 }
