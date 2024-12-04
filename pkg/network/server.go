@@ -117,12 +117,15 @@ func StartServer() {
 	log.Printf("Starting server to fit %d clients.\n", config.ConnCount)
 	wg.Add(config.ConnCount)
 
-	tlsConfig, err := configureServerTLS()
-	if err != nil {
-		log.Fatalf("error configuring TLS for server: %v", err)
+	tlsConfig, errConfig := configureServerTLS()
+	if errConfig != nil {
+		log.Fatalf("error configuring TLS for server: %v", errConfig)
 	}
 
-	listener, err := CreateListener(tlsConfig)
+	listener, errListener := CreateListener(tlsConfig)
+	if errListener != nil {
+		log.Fatalf("error creating listener: %v", errListener)
+	}
 	defer func(listener net.Listener) {
 		err := listener.Close()
 		if err != nil {
