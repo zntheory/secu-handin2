@@ -23,7 +23,7 @@ secu-handin2/
 │   ├──network/
 │   │   ├── client.go      # Network client implementation for patients
 │   │   ├── server.go      # Network server implementation for the hospital
-│   │   └── tls.go         # TLS setup and key exchange
+│   │   └── tlsutils.go         # TLS setup and key exchange
 │   └──sharing/
 │       ├── aggregation.go # Secure aggregation logic
 │       ├── shares.go      # Additive secret sharing implementation
