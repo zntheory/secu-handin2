@@ -43,10 +43,10 @@ If you prefer to manually open each terminal, follow these steps:
    ```
 
 2. **Open three terminals for the patients**:
-   - For each of the 3 remaining terminals, navigate to the `patient` folder and run:
+   - For each of the 3 remaining terminals, navigate to the `patient_sol` folder and run:
      ```bash
-     cd patient
-     dotnet build # only need to urun this once
+     cd patient_sol
+     dotnet build patient_sol # only need to run this once
      dotnet run <ID> <DATA>
      ```
      Replace `<ID>` with 1, 2, or 3 (make sure each patient has a unique ID).
@@ -75,7 +75,7 @@ If you prefer to automatically open the required terminals and run the start-up 
    
    The script will:
    - Create a development **certificate**
-   - **Build** the project using <hospital_sol.sln> and <patient_sol.sln> 
+   - **Build** the project using solutions hospital_sol.sln and patient_sol.sln ... 
    - Open a terminal for the **hospital server** and run `dotnet run`.
    - Open three terminals for the **patients**, each running the `dotnet run <ID> <DATA>` command.
 
