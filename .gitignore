@@ -1,2 +1,6 @@
 # IDE project files xdd
 .idea
+
+# bin and obj
+*/bin/*
+*/obj/*
