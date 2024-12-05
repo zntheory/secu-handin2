@@ -50,7 +50,7 @@ If you prefer to manually open each terminal, follow these steps:
      dotnet run <ID> <DATA>
      ```
      Replace `<ID>` with 1, 2, or 3 (make sure each patient has a unique ID).
-     Replace `<DATA` with an integer between 1 and 15000.
+     Replace `<DATA>` with an integer between 1 and 15000.
 
 3. **Execute**:
    - Press `Enter` in each patient terminal to distribute shares among the patients.
@@ -82,7 +82,7 @@ If you prefer to automatically open the required terminals and run the start-up 
 2. **Execute**:
    - Once the script has opened the terminals, you just need to press `Enter` in each of the patient terminals to begin the share distribution process.
    - After that, press `Enter` again to send the results to the hospital server.
-   - The hospital server will display the final sum once all results have been received.
+   - The hospital server will display the final aggregation once all results have been received.
 
 ---
 
@@ -100,6 +100,4 @@ IF you ran it using the script, or used 1, 2, 3 as the data inputs:
 Aggregation result: 44994
 ```
 
-At this point, the program has finished executing, and you can close all terminals.
-
----
+Now, the program has finished executing, and you can (manually) close all terminals.
