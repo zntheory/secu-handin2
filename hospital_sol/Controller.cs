@@ -12,11 +12,15 @@ public class Controller : ControllerBase
         _hospital = hospital;
     }
 
-    [HttpPost("Aggregate")]
-    public IActionResult Post([FromBody] int input)
+    [HttpPost("Shares")]
+    public IActionResult Post([FromBody] int result)
     {
-        if (_hospital.ShareCount >= 3) return BadRequest(new { message = "No more shares, pwease!!" });
-        _hospital.Aggregate(input);
-        return Ok(new { message = $"Received: {input}" });
+        if (_hospital.ShareCount <= 3)
+        {
+            _hospital.Aggregate(result);
+            return Ok(new{message = $"Received result: {result}"});
+        }
+
+        return BadRequest(new {message = "Stawp invading secrets pwease!!"});
     }
 }

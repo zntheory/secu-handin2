@@ -36,4 +36,4 @@ Console.WriteLine($"Wait until all secrets have been sent before continuing.\n[P
 Console.ReadLine();
 
 await patient.SendToHospital();
-Console.WriteLine($"Patient {patient.Id} sent their sum of shares to SECU Hospital.\n- Closing connection -");
+Console.WriteLine($"\n- Closing connection -");

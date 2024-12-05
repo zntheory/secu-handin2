@@ -6,11 +6,11 @@ public class Patient
     public int Id { get; set; }
     public int Data { get; set; }
     public int Port { get; set; }
-    private int hospitalPort = 8080;
+    private int hospitalPort = 5001;
     private int maxdata = 15000;
     private int[] myShares = new int[3];
     private List<int> shares = new();
-    private List<string> ports = ["8081", "8082", "8083"];
+    private List<string> ports = ["5002", "5003", "5004"];
     private Random rand = new();
 
     public Patient(int id, int data)
@@ -63,17 +63,17 @@ public class Patient
         int sumShares = SumShares();
         using HttpClient client = new();
         var handler = new HttpClientHandler();
-        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true; // Actual good certs cost money, so... let's pretend.
+        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, err) => true; // Actual good certs cost money, so... let's pretend.
         using var secureClient = new HttpClient(handler);
         
         var content  = new StringContent(sumShares.ToString(), System.Text.Encoding.UTF8, "application/json");
-        var response = await secureClient.PostAsync($"https://localhost:{hospitalPort}/Hospital/Aggregate", content);
+        var response = await secureClient.PostAsync($"https://localhost:{hospitalPort}/Hospital/Shares", content);
 
         if (!response.IsSuccessStatusCode)
         {
             Console.WriteLine($"Error sending sum {sumShares} to SECU Hospital");
             var result = await response.Content.ReadAsStringAsync();
-            Console.WriteLine("Response: " + result);
+            Console.WriteLine("Response: " + result + " " + response.StatusCode);
         }
         else { Console.WriteLine($"Sent sum {sumShares} to SECU Hospital"); }
     }

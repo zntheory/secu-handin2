@@ -13,10 +13,10 @@ public class PatientController : ControllerBase
     }
 
     [HttpPost("Message")]
-    public ActionResult<string> Message([FromBody] int input)
+    public ActionResult<string> Post([FromBody] int input)
     {
         _patient.AppendShare(input);
-        return Ok(new {message = $"Received share: {input}"});
+        return Ok(new {message = $"Fellow patient received share: {input}"});
     }
 
 }
