@@ -27,7 +27,7 @@ func LoadCertPK(certFile string, pkFile string) (tls.Certificate, error) {
 
 // ConfigureServerTLS for the hospital
 func ConfigureServerTLS(certFile string, pkFile string) (*tls.Config, error) {
-	cert, err := LoadCertificate(certFile)
+	cert, err := LoadCertPK(certFile, pkFile)
 	if err != nil {
 		return nil, fmt.Errorf("failed to load certificate during sever config: %v", err)
 	}

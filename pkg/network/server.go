@@ -20,13 +20,13 @@ type Client struct {
 	// 2: Sent secrets and received config.ConnCount secrets.
 }
 
-// clients is a map of connected patient.go instances
-var clientsByID = make(map[string]*Client)
-var clientsByConn = make(map[net.Conn]*Client)
-var mu sync.Mutex
-var wg sync.WaitGroup
-var cg sync.WaitGroup
-var clientCount = 0
+var (
+	clientsByID   = make(map[string]*Client)
+	clientsByConn = make(map[net.Conn]*Client)
+	mu            sync.Mutex
+	wg            sync.WaitGroup
+	clientCount   = 0
+)
 
 // generateClientID and Client.ID could be deleted -> conn as ID...
 func generateClientID() (clientID string) {
@@ -56,11 +56,7 @@ func addClient(conn net.Conn) {
 		clientsByID[client.ID] = client
 		clientsByConn[client.Conn] = client
 		clientCount++
-
 		log.Printf("Added client %s. Patient count: %d.", client.ID, clientCount)
-		fmt.Fprintf(conn, "Welcome to the SECU Hospital server!\n"+
-			"Waiting for all clients to connect before receiving secret shares.\n"+
-			"Current no. of clients: %d", clientCount)
 		wg.Done()
 	} else {
 		fmt.Fprint(conn, "Room full. Closing connection.\n- Please contact the SECU hospital if this is a mistake.")
@@ -73,17 +69,19 @@ func addClient(conn net.Conn) {
 }
 
 func secretShare(conn net.Conn) {
-	var secret int
-	_, err := fmt.Fscanf(conn, "%d", &secret)
+	var secret []int
+	_, err := fmt.Fscanf(conn, "%v", &secret)
 	if err != nil {
 		log.Printf("Error reading secret share: %v", err)
 	}
+	secretCount := 0
 
 	mu.Lock()
 	for _, client := range clientsByConn {
 		if client.Conn != conn {
-			fmt.Fprintf(client.Conn, "%d", secret)
-			log.Printf("Secret %d shared to client %s.\n", secret, client.ID)
+			fmt.Fprintf(client.Conn, "%v", secret[secretCount])
+			log.Printf("Secret %v shared to client %s.\n", secret[secretCount], client.ID)
+			secretCount++
 		}
 	}
 	mu.Unlock()
