@@ -91,8 +91,8 @@ If you prefer to automatically open the required terminals and run the start-up 
 Once all the results have been sent, you will see the following output in the hospital terminal:
 
 ```
-Received share <last share received>. Got 3 out of 3 shares.
-Aggregation result: <3 * 15000 - patient1.Data - patient2.Data - patient3.Data>
+Received share < last share received >. Got 3 out of 3 shares.
+Aggregation result: < (3 * 15000) - patient1.Data - patient2.Data - patient3.Data >
 ```
 
 IF you ran it using the script, or used 1, 2, 3 as the data inputs:
