@@ -1,7 +1,5 @@
 #!/bin/bash
 
-curr_dir=$(pwd)
-
 # Step 1: Check for required software dependencies (like dotnet)
 if ! command -v dotnet &> /dev/null
 then
