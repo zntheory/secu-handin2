@@ -15,7 +15,7 @@ public class Hospital
     {
         _shares += amount;
         ShareCount++;
-        Console.WriteLine($"Received share {amount}. Got {ShareCount} out of 3 shares.");
+        Console.WriteLine($"\nReceived share {amount}. Got {ShareCount} out of 3 shares.");
         Console.WriteLine(ShareCount < 3 ? $"Aggregation so far: {_shares}" : $"Aggregation result: {_shares}");
     }
 }

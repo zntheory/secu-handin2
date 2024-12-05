@@ -3,11 +3,11 @@ namespace hospital;
 
 [ApiController]
 [Route("[controller]")]
-public class Controller : ControllerBase
+public class HospitalController : ControllerBase
 {
-    private static Hospital _hospital;
+    private readonly Hospital _hospital;
 
-    public Controller(Hospital hospital)
+    public HospitalController(Hospital hospital)
     {
         _hospital = hospital;
     }
