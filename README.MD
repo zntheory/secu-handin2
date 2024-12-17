@@ -4,7 +4,7 @@
 
 Hope you have ports 5001-5004 open, as that's what the project uses :)
 
-The steps below detail how set up the project and run the hospital (server) and patient terminals.
+The steps below detail how to set up the project and run the hospital (server) and patient terminals.
 
 You can set up the environment in one of two ways:
 
@@ -18,7 +18,7 @@ You can set up the environment in one of two ways:
 If you prefer to manually open each terminal, follow these steps:
 
 0. **Prepare environment in the secu-handin2 folder**:
-   - Create the development certificate:
+   - Enable the development certificate:
    ```bash
    dotnet dev-certs https --trust
    ```
@@ -59,7 +59,7 @@ If you prefer to manually open each terminal, follow these steps:
 
 ---
 
-#### Option 2: Run script.sh to automatically open terminals and run start-up commands****
+#### Option 2: Run script.sh to automatically open terminals and run start-up commands
 
 If you prefer to automatically open the required terminals and run the start-up commands, you can use the provided script. This method will open the necessary terminals and run the commands for you.
 
@@ -74,8 +74,8 @@ If you prefer to automatically open the required terminals and run the start-up 
      ```
    
    The script will:
-   - Create a development **certificate**
-   - **Build** the project using solutions hospital_sol.sln and patient_sol.sln ... 
+   - Create a development **certificate**.
+   - **Build** the project using solutions `hospital_sol.sln` and `patient_sol.sln`.
    - Open a terminal for the **hospital server** and run `dotnet run`.
    - Open three terminals for the **patients**, each running the `dotnet run <ID> <DATA>` command.
 
@@ -95,7 +95,7 @@ Received share < last share received >. Got 3 out of 3 shares.
 Aggregation result: < (3 * 15000) - patient1.Data - patient2.Data - patient3.Data >
 ```
 
-IF you ran it using the script, or used 1, 2, 3 as the data inputs:
+If you ran it using the script, or used 1, 2, 3 as the data inputs:
 ```
 Aggregation result: 44994
 ```
